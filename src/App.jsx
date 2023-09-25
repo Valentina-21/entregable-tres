@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <header className="header">
-       <img src="/images/ricky-morty.png" alt="" />
+        <img src="/images/ricky-morty.png" alt="" />
       </header>
       <div>
         <form className="form" onSubmit={handleSubmit}>
@@ -56,13 +56,17 @@ function App() {
         </form>
 
         {hasError ? (
-          <h2 className="error__mesagge">❌ Hey! you must provide an id from 1 to a 126 🥺</h2>
-        ) : !inputValue || inputValue === "0" ? (
-          <h2 className="error__message">❌ Hey! you must provide an id from 1 to a 126 🥺</h2>
+          <h2 className="error__mesagge">
+            ❌ Hey! you must provide an id from 1 to a 126 🥺
+          </h2>
+        ) : (!inputValue || inputValue === "0" || !location || !location.residents) ? (
+          <h2 className="error__message">
+            ❌ Hey! you must provide an id from 1 to a 126 🥺
+          </h2>
         ) : (
           <>
             <LocationInfo location={location} />
-            {location && location.residents.length === 0 ? (
+            {location.residents.length === 0 ? (
               <Message />
             ) : (
               <div className="container__cards">
@@ -75,13 +79,13 @@ function App() {
         )}
         <div className="pagination__container">
           {items.length > itemsPerPage && (
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPage}
-                  onPageChange={onPageChange}
-                  maxVisibleItems={maxVisibleItems}
-                />
-             )}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPage}
+              onPageChange={onPageChange}
+              maxVisibleItems={maxVisibleItems}
+            />
+          )}
         </div>
       </div>
     </>
